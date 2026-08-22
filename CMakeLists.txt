@@ -5,15 +5,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # open.mp SDK source can be provided via -DOMP_SDK_DIR=<path>. Default: sibling
-# openmp-sampsharp-x64-poc submodule (when consumed by VSRP), falling back to
+# SampSharp submodule (when consumed by VSRP), falling back to
 # a nested copy (when built standalone).
 if(NOT DEFINED OMP_SDK_DIR OR OMP_SDK_DIR STREQUAL "")
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../openmp-sampsharp-x64-poc/external/sdk/CMakeLists.txt")
-        set(OMP_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../openmp-sampsharp-x64-poc/external/sdk")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../SampSharp/external/sdk/CMakeLists.txt")
+        set(OMP_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../SampSharp/external/sdk")
     elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/external/open.mp-sdk/CMakeLists.txt")
         set(OMP_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/open.mp-sdk")
     else()
-        message(FATAL_ERROR "open.mp SDK not found. Set -DOMP_SDK_DIR=<path> or make sure openmp-sampsharp-x64-poc sibling is checked out.")
+        message(FATAL_ERROR "open.mp SDK not found. Set -DOMP_SDK_DIR=<path> or make sure SampSharp sibling is checked out.")
     endif()
 endif()
 message(STATUS "SampSharp.Streamer: using open.mp SDK at ${OMP_SDK_DIR}")

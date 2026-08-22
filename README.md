@@ -33,9 +33,9 @@ Both `SampSharp.dll` and `streamer.dll` are open.mp components loaded from
 
 | Component              | Where from                                                       |
 |------------------------|------------------------------------------------------------------|
-| `SampSharp.dll`        | `openmp-sampsharp-x64-poc/src/sampsharp-component/`              |
+| `SampSharp.dll`        | `SampSharp/src/sampsharp-component/`                             |
 | `streamer.dll`         | Our fork of `samp-streamer-plugin` with IStreamerComponent       |
-| `.NET 9` runtime       | System-wide                                                      |
+| `.NET 10` runtime      | System-wide                                                      |
 
 If `streamer.dll` isn't loaded by open.mp at server start, all Create*
 methods return stub objects with `Id=0, IsAlive=false` and log nothing —
