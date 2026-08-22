@@ -160,7 +160,7 @@ internal sealed class StreamerEventSystem : ISystem
     private static int OnEditObject(int p, int o, int r, float x, float y, float z,
         float rx, float ry, float rz)
     {
-        var res = _dispatcher?.Invoke("OnPlayerEditDynamicObject",
+        var res = _dispatcher?.InvokeAs<object?>("OnPlayerEditDynamicObject", null,
             PlayerEntity(p), WrapObject(o), (EditObjectResponse)r,
             new Vector3(x, y, z), new Vector3(rx, ry, rz));
         return res is true ? 1 : 0;
@@ -169,7 +169,7 @@ internal sealed class StreamerEventSystem : ISystem
     [UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
     private static int OnSelectObject(int p, int o, int m, float x, float y, float z)
     {
-        var res = _dispatcher?.Invoke("OnPlayerSelectDynamicObject",
+        var res = _dispatcher?.InvokeAs<object?>("OnPlayerSelectDynamicObject", null,
             PlayerEntity(p), WrapObject(o), m, new Vector3(x, y, z));
         return res is true ? 1 : 0;
     }
@@ -177,7 +177,7 @@ internal sealed class StreamerEventSystem : ISystem
     [UnmanagedCallersOnly(CallConvs = new[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
     private static int OnShootObject(int p, int w, int o, float x, float y, float z)
     {
-        var res = _dispatcher?.Invoke("OnPlayerShootDynamicObject",
+        var res = _dispatcher?.InvokeAs<object?>("OnPlayerShootDynamicObject", null,
             PlayerEntity(p), w, WrapObject(o), new Vector3(x, y, z));
         return res is false ? 2 /* veto */ : 0 /* continue */;
     }
