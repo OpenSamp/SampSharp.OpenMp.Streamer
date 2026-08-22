@@ -24,12 +24,16 @@ namespace
     IStreamerComponent* g_streamer = nullptr;
 
     // ---- Managed callback function pointers ----
-    using FnPlayerInt = void (__cdecl*)(int, int);
-    using FnIntInt    = void (__cdecl*)(int, int);
-    using FnInt       = void (__cdecl*)(int);
-    using FnEdit      = int  (__cdecl*)(int, int, int, float, float, float, float, float, float);
-    using FnSelect    = int  (__cdecl*)(int, int, int, float, float, float);
-    using FnShoot     = int  (__cdecl*)(int, int, int, float, float, float);
+    // На Linux x64 calling convention один (System V), `__cdecl` расшифровывается
+    // в `__attribute__((__cdecl__))` в позиции, которую GCC отказывается парсить
+    // в using-алиасе → дальше ломается весь TU. На Win/x86 cdecl нужен, но мы там
+    // через MSVC, который ест keyword-форму без аттрибута.
+    using FnPlayerInt = void (*)(int, int);
+    using FnIntInt    = void (*)(int, int);
+    using FnInt       = void (*)(int);
+    using FnEdit      = int  (*)(int, int, int, float, float, float, float, float, float);
+    using FnSelect    = int  (*)(int, int, int, float, float, float);
+    using FnShoot     = int  (*)(int, int, int, float, float, float);
 
     FnPlayerInt cb_pickup        = nullptr;
     FnPlayerInt cb_enterCp       = nullptr;
