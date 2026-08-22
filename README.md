@@ -117,7 +117,8 @@ with `-DOMP_SDK_DIR=<path>` if your layout differs.
 
 ## License
 
-Apache-2.0, same as the upstream streamer plugin.
+Apache-2.0 -- see [LICENSE](LICENSE). That covers the bindings in this
+repository; the streamer plugin itself is licensed separately by its authors.
 
 ---
 
